@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ═══ SEO Meta Tags ═══ -->
+  <title>Gulshan Divakar — Frontend Engineer & Creative Developer</title>
+  <meta name="description" content="Gulshan Divakar is a frontend engineer and creative developer specialising in accessible, high-performance web experiences. Based in San Francisco." />
+  <meta name="keywords" content="frontend engineer, creative developer, web accessibility, React, TypeScript, UI design" />
+  <meta name="author" content="Gulshan Divakar" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gulshan.dev/" />
+
+  <!-- ═══ Open Graph / Social ═══ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gulshan.dev/" />
+  <meta property="og:title" content="Gulshan Divakar — Frontend Engineer & Creative Developer" />
+  <meta property="og:description" content="Accessible, high-performance web experiences crafted with care." />
+  <meta property="og:image" content="https://gulshan.dev/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Gulshan Divakar Portfolio" />
+
+  <!-- ═══ Twitter Card ═══ -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@gulshan_divakar" />
+  <meta name="twitter:creator" content="@gulshan_divakar" />
+  <meta name="twitter:title" content="Gulshan Divakar — Frontend Engineer & Creative Developer" />
+  <meta name="twitter:description" content="Accessible, high-performance web experiences crafted with care." />
+  <meta name="twitter:image" content="https://gulshan.dev/og-image.jpg" />
+
+  <!-- ═══ Structured Data ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gulshan Divakar",
+    "url": "https://gulshan.dev",
+    "jobTitle": "Frontend Engineer",
+    "description": "Creative developer specialising in accessible, high-performance web experiences.",
+    "sameAs": [
+      "https://github.com/alexmorgan",
+      "https://linkedin.com/in/alexmorgan",
+      "https://twitter.com/alexmorgan_dev"
+    ]
+  }
+  </script>
+
+  <!-- ═══ Fonts ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       CSS Custom Properties
+    ═══════════════════════════════════════════════ */
+    :root {
+      --c-bg:        #0a0a0a;
+      --c-surface:   #111111;
+      --c-border:    #1e1e1e;
+      --c-border-md: #2a2a2a;
+      --c-text:      #e8e4dc;
+      --c-muted:     #6b6760;
+      --c-accent:    #c9a84c;
+      --c-accent-dk: #8c6f2e;
+      --c-danger:    #d9534f;
+      --c-success:   #4a9e6f;
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-mono:    'JetBrains Mono', 'Courier New', monospace;
+      --ff-body:    'Outfit', system-ui, sans-serif;
+
+      --nav-h: 68px;
+      --max-w: 1100px;
+      --gap:   clamp(1.5rem, 4vw, 3rem);
+
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur:  0.35s;
+    }
+
+    /* ═══════════════════════════════════════════════
+       Reset & Base
+    ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--c-bg);
+      color: var(--c-text);
+      font-family: var(--ff-body);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ═══════════════════════════════════════════════
+       Accessibility Utilities
+    ═══════════════════════════════════════════════ */
+
+    /* Skip link — WCAG 2.4.1 */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 9999;
+      padding: 0.75rem 1.5rem;
+      background: var(--c-accent);
+      color: #0a0a0a;
+      font-family: var(--ff-mono);
+      font-size: 0.85rem;
+      text-decoration: none;
+      border-radius: 0 0 4px 4px;
+      font-weight: 400;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Visually hidden (screen-reader only) */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Focus ring — WCAG 2.4.7 */
+    :focus-visible {
+      outline: 2px solid var(--c-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════
+       Layout Helpers
+    ═══════════════════════════════════════════════ */
+    .container {
+      width: min(var(--max-w), 100% - 2 * var(--gap));
+      margin-inline: auto;
+    }
+
+    .page {
+      display: none;
+      min-height: calc(100vh - var(--nav-h));
+      padding-block: clamp(3rem, 8vw, 6rem);
+      animation: fadeUp 0.5s var(--ease) both;
+    }
+    .page.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════
+       Header / Navigation
+    ═══════════════════════════════════════════════ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--c-border);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Wordmark */
+    .site-logo {
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      color: var(--c-text);
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+    .site-logo em {
+      font-style: italic;
+      color: var(--c-accent);
+    }
+
+    /* Primary navigation */
+    .primary-nav { display: flex; align-items: center; gap: 0.25rem; }
+
+    .nav-link {
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--c-muted);
+      padding: 0.5rem 0.85rem;
+      border-radius: 3px;
+      transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 50%; right: 50%;
+      height: 1px;
+      background: var(--c-accent);
+      transition: left var(--dur) var(--ease), right var(--dur) var(--ease);
+    }
+    .nav-link:hover,
+    .nav-link[aria-current="page"] { color: var(--c-text); }
+    .nav-link[aria-current="page"]::after,
+    .nav-link:hover::after { left: 0.85rem; right: 0.85rem; }
+
+    /* Mobile menu button */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--c-border-md);
+      color: var(--c-text);
+      width: 40px; height: 40px;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0;
+    }
+    .menu-btn span {
+      display: block;
+      width: 18px; height: 1px;
+      background: currentColor;
+      transition: transform var(--dur) var(--ease), opacity var(--dur);
+    }
+    .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    @media (max-width: 640px) {
+      .menu-btn { display: flex; }
+      .primary-nav {
+        display: none;
+        position: absolute;
+        top: var(--nav-h); left: 0; right: 0;
+        background: var(--c-surface);
+        border-bottom: 1px solid var(--c-border);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0;
+      }
+      .primary-nav.open { display: flex; }
+      .nav-link { width: 100%; padding: 0.75rem 1rem; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       Typography System
+    ═══════════════════════════════════════════════ */
+    .display-1 {
+      font-family: var(--ff-display);
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .display-2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .heading-1 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .heading-2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 400;
+      line-height: 1.3;
+    }
+    .label {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c-accent);
+    }
+    .body-lg { font-size: 1.125rem; line-height: 1.75; }
+    .body-sm { font-size: 0.9rem; color: var(--c-muted); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════════
+       Buttons
+    ═══════════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    .btn-primary {
+      background: var(--c-accent);
+      color: #0a0a0a;
+      border-color: var(--c-accent);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--c-accent);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--c-text);
+      border-color: var(--c-border-md);
+    }
+    .btn-outline:hover {
+      border-color: var(--c-accent);
+      color: var(--c-accent);
+    }
+
+    /* ═══════════════════════════════════════════════
+       Dividers / Decorative
+    ═══════════════════════════════════════════════ */
+    .rule {
+      width: 48px; height: 1px;
+      background: var(--c-accent);
+      margin-block: 1.5rem;
+    }
+    .section-tag {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-tag::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--c-border);
+    }
+
+    /* ═══════════════════════════════════════════════
+       HOME PAGE
+    ═══════════════════════════════════════════════ */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: grid;
+      place-content: center;
+      padding-block: 5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 800px; }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--c-accent);
+    }
+
+    .hero-title { margin-bottom: 2rem; }
+    .hero-title em {
+      font-style: italic;
+      color: var(--c-accent);
+    }
+
+    .hero-desc {
+      max-width: 540px;
+      font-size: 1.05rem;
+      color: var(--c-muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--c-muted), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50%      { opacity: 1;   transform: scaleY(1.2); }
+    }
+
+    /* Stats strip */
+    .stats {
+      border-top: 1px solid var(--c-border);
+      border-bottom: 1px solid var(--c-border);
+      padding-block: 2.5rem;
+      margin-block: 5rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-value {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--c-accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--c-border);
+      border: 1px solid var(--c-border);
+    }
+    .service-card {
+      background: var(--c-bg);
+      padding: 2.5rem;
+      transition: background var(--dur) var(--ease);
+    }
+    .service-card:hover { background: var(--c-surface); }
+    .service-icon {
+      font-family: var(--ff-display);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--c-accent);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .service-title {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--c-muted); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT PAGE
+    ═══════════════════════════════════════════════ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-avatar-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      max-width: 380px;
+    }
+    .about-avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid var(--c-border-md);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .about-avatar-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; right: -6px;
+      width: 60%; height: 60%;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent);
+      z-index: 0;
+    }
+    .about-avatar {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background: var(--c-surface);
+      display: grid;
+      place-content: center;
+      font-family: var(--ff-display);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--c-accent);
+    }
+
+    .about-bio p { color: var(--c-muted); line-height: 1.85; margin-bottom: 1.25rem; }
+    .about-bio p:last-of-type { margin-bottom: 0; }
+
+    .skills-list {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      color: var(--c-muted);
+    }
+    .skill-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--c-accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .timeline { margin-top: 4rem; }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      top: 0.25rem; left: calc(80px + 0.75rem - 0.5px);
+      bottom: 0;
+      width: 1px;
+      background: var(--c-border);
+    }
+    .timeline-item:last-child::after { display: none; }
+    .timeline-year {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--c-accent);
+      padding-top: 0.25rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      top: 0.2rem; left: calc(80px + 0.75rem - 4px);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--c-accent);
+      z-index: 1;
+    }
+    .timeline-role {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-company { font-family: var(--ff-mono); font-size: 0.78rem; color: var(--c-accent); }
+    .timeline-desc { font-size: 0.88rem; color: var(--c-muted); margin-top: 0.5rem; line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════════
+       PROJECTS PAGE
+    ═══════════════════════════════════════════════ */
+    .projects-intro { max-width: 640px; margin-bottom: 3.5rem; }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--c-border-md);
+      color: var(--c-muted);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease);
+    }
+    .filter-btn:hover { color: var(--c-text); border-color: var(--c-border-md); }
+    .filter-btn.active {
+      background: var(--c-accent);
+      border-color: var(--c-accent);
+      color: #0a0a0a;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--c-border);
+    }
+
+    .project-card {
+      background: var(--c-bg);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background var(--dur) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--c-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--dur) var(--ease);
+    }
+    .project-card:hover { background: var(--c-surface); }
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-num {
+      font-family: var(--ff-display);
+      font-size: 4rem;
+      font-weight: 300;
+      color: var(--c-border-md);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+    }
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .project-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--c-border-md);
+      color: var(--c-muted);
+      border-radius: 2px;
+    }
+    .project-title {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .project-desc { font-size: 0.88rem; color: var(--c-muted); line-height: 1.7; flex: 1; }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--c-accent);
+      margin-top: auto;
+      transition: gap var(--dur) var(--ease);
+    }
+    .project-link:hover { gap: 0.85rem; }
+    .project-link .arrow { font-size: 1rem; }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT PAGE
+    ═══════════════════════════════════════════════ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    .contact-info-card {
+      padding: 2.5rem;
+      border: 1px solid var(--c-border);
+      position: sticky;
+      top: calc(var(--nav-h) + 1.5rem);
+    }
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-block: 1.25rem;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .contact-detail:last-of-type { border-bottom: none; }
+    .contact-detail-label {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    .contact-detail-value {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      color: var(--c-text);
+    }
+    .contact-detail-value a {
+      text-decoration: none;
+      transition: color var(--dur);
+    }
+    .contact-detail-value a:hover { color: var(--c-accent); }
+
+    /* ─── Contact Form ─── */
+    .contact-form-wrap { padding: 2.5rem; border: 1px solid var(--c-border); }
+
+    .form-title {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .form-subtitle { font-size: 0.9rem; color: var(--c-muted); margin-bottom: 2rem; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+    }
+    label .required {
+      color: var(--c-accent);
+      margin-left: 0.2rem;
+      font-size: 0.8rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border-md);
+      color: var(--c-text);
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      transition: border-color var(--dur) var(--ease);
+      appearance: none;
+    }
+    input[type="text"]:hover,
+    input[type="email"]:hover,
+    select:hover,
+    textarea:hover { border-color: var(--c-muted); }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--c-accent);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+    }
+    input::placeholder,
+    textarea::placeholder { color: var(--c-border-md); }
+
+    textarea { resize: vertical; min-height: 130px; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6760' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    select option { background: var(--c-surface); }
+
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      grid-column: 1 / -1;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      cursor: pointer;
+      accent-color: var(--c-accent);
+      border: 1px solid var(--c-border-md);
+      border-radius: 2px;
+    }
+    .checkbox-label {
+      font-size: 0.85rem;
+      color: var(--c-muted);
+      text-transform: none;
+      letter-spacing: 0;
+      font-family: var(--ff-body);
+    }
+    .checkbox-label a { color: var(--c-accent); text-decoration: none; }
+    .checkbox-label a:hover { text-decoration: underline; }
+
+    /* Error states */
+    .field-error {
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      color: var(--c-danger);
+      letter-spacing: 0.05em;
+      display: none;
+    }
+    .form-group.has-error input,
+    .form-group.has-error textarea,
+    .form-group.has-error select {
+      border-color: var(--c-danger);
+      box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.12);
+    }
+    .form-group.has-error .field-error { display: block; }
+
+    /* Live region for form feedback */
+    .form-status {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 2px;
+      font-family: var(--ff-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      display: none;
+    }
+    .form-status.success {
+      background: rgba(74, 158, 111, 0.1);
+      border: 1px solid var(--c-success);
+      color: var(--c-success);
+      display: block;
+    }
+    .form-status.error {
+      background: rgba(217, 83, 79, 0.1);
+      border: 1px solid var(--c-danger);
+      color: var(--c-danger);
+      display: block;
+    }
+
+    .form-submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    .form-note { font-size: 0.8rem; color: var(--c-muted); }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--ff-mono);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      background: var(--c-accent);
+      color: #0a0a0a;
+      border: 1px solid var(--c-accent);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+      cursor: pointer;
+    }
+    .btn-submit:hover {
+      background: transparent;
+      color: var(--c-accent);
+    }
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .btn-submit .spinner {
+      width: 14px; height: 14px;
+      border: 1.5px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn-submit.loading .spinner { display: block; }
+    .btn-submit.loading .btn-text { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══════════════════════════════════════════════
+       Footer
+    ═══════════════════════════════════════════════ */
+    .site-footer {
+      border-top: 1px solid var(--c-border);
+      padding-block: 2.5rem;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-copy {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      color: var(--c-muted);
+      letter-spacing: 0.08em;
+    }
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .social-link {
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--c-muted);
+      transition: color var(--dur);
+    }
+    .social-link:hover { color: var(--c-accent); }
+
+    /* ═══════════════════════════════════════════════
+       Responsive Adjustments
+    ═══════════════════════════════════════════════ */
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ Skip navigation link (WCAG 2.4.1) ══ -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ════════════════════════════════════════════
+       HEADER / PRIMARY NAVIGATION
+  ════════════════════════════════════════════ -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+
+      <!-- Wordmark / logo -->
+      <a href="#home" class="site-logo" aria-label="Gulshan Divakar — homepage" data-page="home">
+        Gulshan <em>Divakar</em>
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button
+        class="menu-btn"
+        id="menu-toggle"
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+        type="button"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <!-- Primary navigation -->
+      <nav
+        id="primary-nav"
+        class="primary-nav"
+        role="navigation"
+        aria-label="Primary navigation"
+      >
+        <a href="#home"     class="nav-link" data-page="home"     aria-current="page">Home</a>
+        <a href="#about"    class="nav-link" data-page="about">About</a>
+        <a href="#projects" class="nav-link" data-page="projects">Projects</a>
+        <a href="#contact"  class="nav-link" data-page="contact">Contact</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════
+       MAIN CONTENT (landmark)
+  ════════════════════════════════════════════ -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- ──────────────────────────────────────────
+         PAGE: HOME
+    ────────────────────────────────────────── -->
+    <article id="page-home" class="page active" role="main" aria-labelledby="home-title">
+
+      <!-- Hero section -->
+      <section class="hero" aria-labelledby="home-title">
+        <div class="container hero-content">
+
+          <div class="hero-eyebrow" aria-hidden="true">
+            <span class="label">Available for projects</span>
+          </div>
+
+          <h1 id="home-title" class="display-1 hero-title">
+            Crafting the<br />
+            <em>web of tomorrow</em>
+          </h1>
+
+          <p class="hero-desc">
+            I'm a frontend engineer and creative developer who builds
+            accessible, performant, and beautifully engineered digital
+            experiences. Focused on the intersection of design and code.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              href="#projects"
+              class="btn btn-primary"
+              data-page="projects"
+              aria-label="View my work — go to projects page"
+            >
+              View my work
+            </a>
+            <a
+              href="#contact"
+              class="btn btn-outline"
+              data-page="contact"
+              aria-label="Get in touch — go to contact page"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-scroll" aria-hidden="true">
+          <div class="hero-scroll-line"></div>
+          <span>scroll</span>
+        </div>
+      </section>
+
+      <!-- Stats section -->
+      <section class="stats" aria-label="Career highlights">
+        <div class="container">
+          <dl class="stats-grid">
+            <div class="stat">
+              <dt class="sr-only">Years of experience</dt>
+              <dd>
+                <span class="stat-value" aria-hidden="true">7+</span>
+                <p class="stat-label">Years experience</p>
+              </dd>
+            </div>
+            <div class="stat">
+              <dt class="sr-only">Projects completed</dt>
+              <dd>
+                <span class="stat-value" aria-hidden="true">40+</span>
+                <p class="stat-label">Projects shipped</p>
+              </dd>
+            </div>
+            <div class="stat">
+              <dt class="sr-only">Client satisfaction</dt>
+              <dd>
+                <span class="stat-value" aria-hidden="true">98%</span>
+                <p class="stat-label">Client satisfaction</p>
+              </dd>
+            </div>
+            <div class="stat">
+              <dt class="sr-only">Open source contributions</dt>
+              <dd>
+                <span class="stat-value" aria-hidden="true">12</span>
+                <p class="stat-label">Open source repos</p>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Services section -->
+      <section aria-labelledby="services-heading" style="padding-bottom: 5rem;">
+        <div class="container">
+          <div class="section-tag">
+            <span class="label">What I do</span>
+          </div>
+          <h2 id="services-heading" class="heading-1" style="margin-bottom: 2.5rem;">
+            Areas of expertise
+          </h2>
+
+          <ul class="services-grid" role="list">
+            <li class="service-card">
+              <div class="service-icon" aria-hidden="true">01</div>
+              <h3 class="service-title">Frontend Engineering</h3>
+              <p class="service-desc">
+                High-performance React and TypeScript applications built
+                with a focus on developer experience and long-term maintainability.
+              </p>
+            </li>
+            <li class="service-card">
+              <div class="service-icon" aria-hidden="true">02</div>
+              <h3 class="service-title">Accessibility Auditing</h3>
+              <p class="service-desc">
+                Comprehensive WCAG 2.2 AA/AAA compliance reviews, remediation
+                strategies, and accessible-by-default component systems.
+              </p>
+            </li>
+            <li class="service-card">
+              <div class="service-icon" aria-hidden="true">03</div>
+              <h3 class="service-title">Design Systems</h3>
+              <p class="service-desc">
+                Scalable, token-driven design systems that bridge the gap
+                between design tools and production code seamlessly.
+              </p>
+            </li>
+            <li class="service-card">
+              <div class="service-icon" aria-hidden="true">04</div>
+              <h3 class="service-title">Performance Optimization</h3>
+              <p class="service-desc">
+                Core Web Vitals improvement, bundle analysis, and
+                rendering strategy to achieve Lighthouse scores above 95.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- ──────────────────────────────────────────
+         PAGE: ABOUT
+    ────────────────────────────────────────── -->
+    <article id="page-about" class="page" aria-labelledby="about-title">
+      <div class="container">
+
+        <div class="section-tag">
+          <span class="label">About me</span>
+        </div>
+        <h1 id="about-title" class="heading-1" style="margin-bottom: 3rem;">
+          The person behind the code
+        </h1>
+
+        <div class="about-grid">
+
+          <!-- Avatar placeholder -->
+          <aside aria-label="Portrait of Gulshan Divakar">
+            <div class="about-avatar-wrap">
+              <div class="about-avatar" role="img" aria-label="Illustrated monogram representing Gulshan Divakar">
+                AM
+              </div>
+            </div>
+          </aside>
+
+          <!-- Bio content -->
+          <div>
+            <div class="about-bio">
+              <p>
+                Hi — I'm Gulshan, a San Francisco-based frontend engineer with
+                seven years of experience building products for startups,
+                scale-ups, and Fortune 500 companies. I care deeply about
+                the craft of interface development and the people who use
+                the things we build.
+              </p>
+              <p>
+                My approach blends engineering rigour with a designer's eye.
+                Before writing a single line of code, I ask <em>why</em> —
+                why does this interaction exist, who benefits, and how can
+                it be made more inclusive? That thinking shapes everything
+                from component API design to animation timing.
+              </p>
+              <p>
+                Outside of work you'll find me teaching an accessibility
+                workshop, contributing to open-source tooling, or
+                photographing the edges of California's coast.
+              </p>
+            </div>
+
+            <!-- Skills list -->
+            <div aria-labelledby="skills-heading">
+              <div class="rule" role="presentation"></div>
+              <h2 id="skills-heading" class="label" style="margin-bottom: 1rem;">
+                Tools &amp; technologies
+              </h2>
+              <ul class="skills-list" role="list">
+                <li class="skill-item">React / Next.js</li>
+                <li class="skill-item">TypeScript</li>
+                <li class="skill-item">CSS / CSS-in-JS</li>
+                <li class="skill-item">Accessibility (WCAG)</li>
+                <li class="skill-item">Node.js</li>
+                <li class="skill-item">GraphQL</li>
+                <li class="skill-item">Design Systems</li>
+                <li class="skill-item">Web Performance</li>
+                <li class="skill-item">Figma</li>
+                <li class="skill-item">Storybook</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience timeline -->
+        <section aria-labelledby="experience-heading" style="margin-top: 5rem;">
+          <div class="section-tag">
+            <span class="label">Experience</span>
+          </div>
+          <h2 id="experience-heading" class="heading-1" style="margin-bottom: 3rem;">
+            Where I've worked
+          </h2>
+
+          <ol class="timeline" aria-label="Work history timeline">
+            <li class="timeline-item">
+              <span class="timeline-year">2022</span>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <div>
+                <h3 class="timeline-role">Senior Frontend Engineer</h3>
+                <span class="timeline-company">Stripe</span>
+                <p class="timeline-desc">
+                  Led the accessibility initiative for Stripe's dashboard,
+                  achieving full WCAG 2.2 AA compliance and improving
+                  keyboard navigation for 3M+ monthly users.
+                </p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-year">2019</span>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <div>
+                <h3 class="timeline-role">Frontend Engineer</h3>
+                <span class="timeline-company">Linear</span>
+                <p class="timeline-desc">
+                  Architected the component library powering Linear's product
+                  suite, with 200+ accessible, themeable components built
+                  on a custom design token system.
+                </p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-year">2017</span>
+              <div class="timeline-dot" aria-hidden="true"></div>
+              <div>
+                <h3 class="timeline-role">UI Engineer</h3>
+                <span class="timeline-company">Figma</span>
+                <p class="timeline-desc">
+                  Built performance-critical canvas interactions and
+                  real-time collaboration UI for Figma's early web product.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+      </div>
+    </article>
+
+    <!-- ──────────────────────────────────────────
+         PAGE: PROJECTS
+    ────────────────────────────────────────── -->
+    <article id="page-projects" class="page" aria-labelledby="projects-title">
+      <div class="container">
+
+        <div class="section-tag">
+          <span class="label">Selected work</span>
+        </div>
+        <h1 id="projects-title" class="heading-1">Projects</h1>
+
+        <div class="projects-intro" style="margin-top: 1rem;">
+          <p class="body-sm">
+            A curated selection of client work, open-source projects,
+            and personal experiments — spanning design systems,
+            accessibility tooling, and creative interfaces.
+          </p>
+        </div>
+
+        <!-- Filter controls -->
+        <div
+          class="filter-bar"
+          role="group"
+          aria-label="Filter projects by category"
+        >
+          <button class="filter-btn active" data-filter="all" aria-pressed="true" type="button">All</button>
+          <button class="filter-btn" data-filter="design-system" aria-pressed="false" type="button">Design System</button>
+          <button class="filter-btn" data-filter="web-app" aria-pressed="false" type="button">Web App</button>
+          <button class="filter-btn" data-filter="accessibility" aria-pressed="false" type="button">Accessibility</button>
+          <button class="filter-btn" data-filter="open-source" aria-pressed="false" type="button">Open Source</button>
+        </div>
+
+        <!-- Projects grid -->
+        <ul
+          id="projects-list"
+          class="projects-grid"
+          role="list"
+          aria-label="Project cards"
+        >
+          <li class="project-card" data-category="design-system">
+            <span class="project-num" aria-hidden="true">01</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Design System</span>
+              <span class="project-tag">React</span>
+            </div>
+            <h2 class="project-title">Meridian UI</h2>
+            <p class="project-desc">
+              A fully accessible, themeable component library built for
+              enterprise scale. 200+ components, dark mode, WCAG AAA,
+              and comprehensive Storybook documentation.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View Meridian UI project — external link"
+            >
+              View project <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="project-card" data-category="web-app">
+            <span class="project-num" aria-hidden="true">02</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Web App</span>
+              <span class="project-tag">Next.js</span>
+            </div>
+            <h2 class="project-title">Beacon Analytics</h2>
+            <p class="project-desc">
+              Real-time analytics dashboard for SaaS companies. Custom
+              data visualisations, keyboard-navigable charts, and
+              sub-100ms interactions.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View Beacon Analytics project — external link"
+            >
+              View project <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="project-card" data-category="accessibility open-source">
+            <span class="project-num" aria-hidden="true">03</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Accessibility</span>
+              <span class="project-tag">Open Source</span>
+            </div>
+            <h2 class="project-title">a11y-lens</h2>
+            <p class="project-desc">
+              A browser devtools extension that surfaces WCAG violations
+              in real time, with guided remediation suggestions and
+              exportable audit reports.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View a11y-lens project on GitHub — external link"
+            >
+              View on GitHub <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="project-card" data-category="web-app design-system">
+            <span class="project-num" aria-hidden="true">04</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Web App</span>
+              <span class="project-tag">TypeScript</span>
+            </div>
+            <h2 class="project-title">Compass CMS</h2>
+            <p class="project-desc">
+              A headless content management system with a drag-and-drop
+              block editor, accessible rich-text fields, and live
+              preview across breakpoints.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View Compass CMS project — external link"
+            >
+              View project <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="project-card" data-category="open-source">
+            <span class="project-num" aria-hidden="true">05</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Open Source</span>
+              <span class="project-tag">CLI</span>
+            </div>
+            <h2 class="project-title">token-sync</h2>
+            <p class="project-desc">
+              A CLI tool that syncs design tokens from Figma to code
+              automatically, outputting CSS custom properties, JS constants,
+              and Tailwind config in one command.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View token-sync project on npm — external link"
+            >
+              View on npm <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="project-card" data-category="web-app accessibility">
+            <span class="project-num" aria-hidden="true">06</span>
+            <div class="project-tags" aria-label="Categories">
+              <span class="project-tag">Web App</span>
+              <span class="project-tag">Accessibility</span>
+            </div>
+            <h2 class="project-title">Inclusive Forms</h2>
+            <p class="project-desc">
+              A research project and public guide documenting patterns
+              for building highly accessible web forms — with annotated
+              code examples and usability test findings.
+            </p>
+            <a
+              href="#"
+              class="project-link"
+              aria-label="View Inclusive Forms guide — external link"
+            >
+              Read guide <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Empty state (hidden by default) -->
+        <p
+          id="no-results"
+          role="status"
+          aria-live="polite"
+          style="display:none; padding: 3rem 0; color: var(--c-muted); font-family: var(--ff-mono); font-size: 0.85rem;"
+        >
+          No projects in this category yet.
+        </p>
+
+      </div>
+    </article>
+
+    <!-- ──────────────────────────────────────────
+         PAGE: CONTACT
+    ────────────────────────────────────────── -->
+    <article id="page-contact" class="page" aria-labelledby="contact-title">
+      <div class="container">
+
+        <div class="section-tag">
+          <span class="label">Get in touch</span>
+        </div>
+        <h1 id="contact-title" class="heading-1" style="margin-bottom: 3rem;">
+          Let's build something great
+        </h1>
+
+        <div class="contact-grid">
+
+          <!-- Contact info sidebar -->
+          <aside aria-label="Contact details">
+            <div class="contact-info-card">
+              <h2 class="heading-2" style="margin-bottom: 1.5rem;">Direct channels</h2>
+
+              <div class="contact-detail">
+                <span class="contact-detail-label">Email</span>
+                <span class="contact-detail-value">
+                  <a href="mailto:diwakar9617@gmail.com" aria-label="Send email to diwakar9617@gmail.com">
+                    diwakar9617@gmail.com
+                  </a>
+                </span>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-detail-label">Location</span>
+                <span class="contact-detail-value">San Francisco, CA</span>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-detail-label">Availability</span>
+                <span class="contact-detail-value" style="color: var(--c-success);">
+                  Open to projects
+                </span>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-detail-label">Response time</span>
+                <span class="contact-detail-value">Within 24 hours</span>
+              </div>
+
+              <div style="margin-top: 2rem;">
+                <h3 class="label" style="margin-bottom: 1rem;">Social profiles</h3>
+                <ul role="list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <li>
+                    <a href="https://github.com/alexmorgan" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile — opens in new tab">
+                      GitHub ↗
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://linkedin.com/in/alexmorgan" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile — opens in new tab">
+                      LinkedIn ↗
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/alexmorgan_dev" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X profile — opens in new tab">
+                      Twitter / X ↗
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Contact form -->
+          <section aria-labelledby="form-heading">
+            <div class="contact-form-wrap">
+              <h2 id="form-heading" class="form-title">Send a message</h2>
+              <p class="form-subtitle">
+                Fields marked with <span aria-label="asterisk, required">*</span> are required.
+              </p>
+
+              <!-- Live region for form status announcements -->
+              <div
+                id="form-status"
+                class="form-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              ></div>
+
+              <form
+                id="contact-form"
+                novalidate
+                aria-describedby="form-status"
+              >
+                <div class="form-grid">
+
+                  <!-- Name -->
+                  <div class="form-group" id="group-name">
+                    <label for="name">
+                      Full name
+                      <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      autocomplete="name"
+                      placeholder="Jane Smith"
+                      required
+                      aria-required="true"
+                      aria-describedby="name-error"
+                    />
+                    <span id="name-error" class="field-error" role="alert">
+                      Please enter your full name.
+                    </span>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group" id="group-email">
+                    <label for="email">
+                      Email address
+                      <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autocomplete="email"
+                      placeholder="jane@company.com"
+                      required
+                      aria-required="true"
+                      aria-describedby="email-error"
+                    />
+                    <span id="email-error" class="field-error" role="alert">
+                      Please enter a valid email address.
+                    </span>
+                  </div>
+
+                  <!-- Company (optional) -->
+                  <div class="form-group">
+                    <label for="company">Company <span style="color: var(--c-muted); font-size: 0.65rem;">(optional)</span></label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      autocomplete="organization"
+                      placeholder="Acme Inc."
+                    />
+                  </div>
+
+                  <!-- Project type -->
+                  <div class="form-group" id="group-type">
+                    <label for="project-type">
+                      Project type
+                      <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <select
+                      id="project-type"
+                      name="project-type"
+                      required
+                      aria-required="true"
+                      aria-describedby="type-error"
+                    >
+                      <option value="" disabled selected>Select a type…</option>
+                      <option value="design-system">Design system</option>
+                      <option value="web-app">Web application</option>
+                      <option value="accessibility">Accessibility audit</option>
+                      <option value="performance">Performance optimisation</option>
+                      <option value="consulting">Consulting / advising</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <span id="type-error" class="field-error" role="alert">
+                      Please select a project type.
+                    </span>
+                  </div>
+
+                  <!-- Message -->
+                  <div class="form-group full" id="group-message">
+                    <label for="message">
+                      Message
+                      <span class="required" aria-hidden="true">*</span>
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows="5"
+                      placeholder="Tell me about your project — goals, timeline, and any technical constraints…"
+                      required
+                      aria-required="true"
+                      aria-describedby="message-error"
+                      minlength="20"
+                    ></textarea>
+                    <span id="message-error" class="field-error" role="alert">
+                      Please write a message (at least 20 characters).
+                    </span>
+                  </div>
+
+                  <!-- Privacy consent -->
+                  <div class="checkbox-group" id="group-consent">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      name="consent"
+                      required
+                      aria-required="true"
+                      aria-describedby="consent-error"
+                    />
+                    <label for="consent" class="checkbox-label">
+                      I agree to the
+                      <a href="#" aria-label="Privacy policy — opens in current page">privacy policy</a>
+                      and consent to being contacted about my enquiry.
+                      <span class="required" aria-hidden="true">*</span>
+                    </label>
+                  </div>
+                  <span id="consent-error" class="field-error" role="alert" style="grid-column: 1/-1; display: none;">
+                    Please accept the privacy policy to continue.
+                  </span>
+
+                  <!-- Submit row -->
+                  <div class="form-submit-row">
+                    <p class="form-note">Your details are never shared with third parties.</p>
+                    <button
+                      type="submit"
+                      class="btn-submit"
+                      id="submit-btn"
+                      aria-describedby="form-status"
+                    >
+                      <div class="spinner" aria-hidden="true"></div>
+                      <span class="btn-text">Send message</span>
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo" aria-label="Site footer">
+    <div class="container footer-inner">
+
+      <p class="footer-copy">
+        <span aria-hidden="true">©</span>
+        <span class="sr-only">Copyright</span>
+        2026 Gulshan Divakar. Made with care.
+      </p>
+
+      <nav aria-label="Social media links">
+        <ul class="social-links" role="list">
+          <li>
+            <a href="https://github.com/Gkd0" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub — opens in new tab">
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/gulshan-divakar-159b28410" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — opens in new tab">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X — opens in new tab">
+              Twitter
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════ -->
+  <script>
+    // ─── SPA Router ───────────────────────────────
+    const pages    = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link[data-page]');
+
+    function showPage(id) {
+      const target = document.getElementById('page-' + id);
+      if (!target) return;
+
+      pages.forEach(p => {
+        p.classList.remove('active');
+        p.removeAttribute('style');
+      });
+      target.classList.add('active');
+
+      navLinks.forEach(l => {
+        const isCurrent = l.dataset.page === id;
+        l.setAttribute('aria-current', isCurrent ? 'page' : 'false');
+      });
+
+      // Move focus to main landmark for screen-reader announcement
+      const main = document.getElementById('main-content');
+      main.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Update URL hash without triggering a scroll
+      history.pushState(null, '', '#' + id);
+    }
+
+    // Intercept all [data-page] clicks
+    document.addEventListener('click', e => {
+      const el = e.target.closest('[data-page]');
+      if (!el) return;
+      e.preventDefault();
+      const page = el.dataset.page;
+      showPage(page);
+      // Close mobile nav if open
+      const nav = document.getElementById('primary-nav');
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', () => {
+      const hash = location.hash.replace('#', '') || 'home';
+      showPage(hash);
+    });
+
+    // Load correct page from URL hash
+    const initPage = location.hash.replace('#', '') || 'home';
+    showPage(initPage);
+
+    // ─── Mobile menu ─────────────────────────────
+    const menuBtn = document.getElementById('menu-toggle');
+    const nav     = document.getElementById('primary-nav');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.focus();
+      }
+    });
+
+    // ─── Project filter ──────────────────────────
+    const filterBtns  = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('#projects-list .project-card');
+    const noResults    = document.getElementById('no-results');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        let visible = 0;
+        projectCards.forEach(card => {
+          const cats = card.dataset.category || '';
+          const show = filter === 'all' || cats.includes(filter);
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+      });
+    });
+
+    // ─── Contact form validation ──────────────────
+    const form      = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const status    = document.getElementById('form-status');
+
+    function setError(groupId, show) {
+      const group = document.getElementById('group-' + groupId);
+      if (!group) return;
+      group.classList.toggle('has-error', show);
+    }
+
+    function validateEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    }
+
+    // Inline validation on blur
+    form.addEventListener('focusout', e => {
+      const el = e.target;
+      if (!el.name) return;
+
+      if (el.id === 'name')          setError('name',    el.value.trim().length === 0);
+      if (el.id === 'email')         setError('email',   !validateEmail(el.value.trim()));
+      if (el.id === 'project-type')  setError('type',    el.value === '');
+      if (el.id === 'message')       setError('message', el.value.trim().length < 20);
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      // Full validation
+      const name     = form.querySelector('#name').value.trim();
+      const email    = form.querySelector('#email').value.trim();
+      const type     = form.querySelector('#project-type').value;
+      const message  = form.querySelector('#message').value.trim();
+      const consent  = form.querySelector('#consent').checked;
+
+      const errors = {
+        name:    name.length === 0,
+        email:   !validateEmail(email),
+        type:    type === '',
+        message: message.length < 20,
+        consent: !consent,
+      };
+
+      const hasErrors = Object.values(errors).some(Boolean);
+      Object.entries(errors).forEach(([k, v]) => setError(k, v));
+
+      // Handle consent error (special layout)
+      const consentErr = document.getElementById('consent-error');
+      consentErr.style.display = errors.consent ? 'block' : 'none';
+
+      if (hasErrors) {
+        // Focus first error field
+        const firstErrorGroup = form.querySelector('.has-error input, .has-error select, .has-error textarea');
+        if (firstErrorGroup) firstErrorGroup.focus();
+        return;
+      }
+
+      // Simulate async submission
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+      status.className = 'form-status';
+      status.textContent = '';
+
+      await new Promise(r => setTimeout(r, 1800));
+
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+
+      // Show success
+      status.className = 'form-status success';
+      status.textContent = '✓ Message sent! I'll be in touch within 24 hours.';
+      form.reset();
+
+      // Auto-hide after 6s
+      setTimeout(() => {
+        status.className = 'form-status';
+        status.textContent = '';
+      }, 6000);
+    });
+  </script>
+
+</body>
+</html>
